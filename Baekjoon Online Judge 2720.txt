@@ -1,0 +1,20 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args){
+        
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt(); // 테스트 케이스 수
+        
+        int [] type = {25,10,5,1};      //화폐 종류
+        Arrays.sort(type); // 오름차순 정렬
+        int [] c = new int[T];
+        for(int i=0; i<T; i++){
+           c[i] =sc.nextInt();
+            System.out.println(
+                                (c[i]/type[3])+" "+((c[i]%type[3])/type[2])  // 첫 번째 값: 센트를 쿼터값으로 나눈 몫, 두 번째 값: 센트를 쿼터값으로 나눈 나머지를 다임값으로 나눈 몫
+                                              +" " + (((c[i]%type[3])%type[2])/type[1]) //세 번째 값:센트를 쿼터값으로 나눈 나머지를 다임값으로 나누고 그 나머지 값을 니켈값으로 나눈 몫
+                                               +" " + ((((c[i]%type[3])%type[2])%type[1])/type[0])); //네 번째 값 :센트를 쿼터값으로 나눈 나머지를 다임값으로 나누고 그 나머지 값을 니켈값으로 나눈 나머지의 값을 페니값으로 나눈 몫
+           }
+        }
+    }
