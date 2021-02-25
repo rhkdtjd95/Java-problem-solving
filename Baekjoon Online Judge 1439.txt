@@ -1,0 +1,22 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args) {
+		int one = 0; // 연속된 1 저장할 변수
+        int zero = 0; // 연속된 0 저장할 변수
+		Scanner sc = new Scanner(System.in);
+		String s = sc.next();
+		
+		if(s.charAt(0)=='0')	zero++; // 첫번째 글자가 0인지 1인지에 따라 저장
+		else	one++;
+		
+		for (int i = 1; i < s.length(); ++i) { 
+            // 글자가 같으면 세지 않고 앞에것이 0이고 뒤에것이 1이면 zero++
+			if(s.charAt(i)== '0' && s.charAt(i-1) == '1')
+				zero++;
+            //앞에것이 1이고 뒤에 것이 0이면 one++
+			else if(s.charAt(i) == '1' && s.charAt(i-1) == '0')
+				one++;
+		}//두 값중 최솟값 출력
+		System.out.println(Math.min(one, zero));
+	}
+}
