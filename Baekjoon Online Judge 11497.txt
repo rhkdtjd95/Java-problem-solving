@@ -1,0 +1,36 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int T = sc.nextInt(); //테스트 케이스 
+		for (int tc = 1; tc <= T; tc++) {
+			int n = sc.nextInt(); //통나무 개수
+			int arr [] = new int[n];
+			for (int i = 0; i < n; i++) {
+				arr[i] = sc.nextInt(); //통나무 높이를 담은 배열
+			}
+			Arrays.sort(arr);
+            
+            int ans [] = new int[n];
+            int left = 0;
+            int right = n-1;
+	        
+            for(int k = 0; k<n; k++) {
+                if(k%2 == 0){  //짝수 인덱스값은 왼쪽 배치 홀수 인덱스 값은 오른쪽 배치 
+                    ans[left] = arr[k];
+                    left+=1;
+                } else{
+                    ans[right] = arr[k];
+                    right-=1;
+                }
+            }
+            int min = Math.abs(ans[0]-ans[n-1]); //기준값 설정
+            for(int j = 1; j<n; j++) {
+                min = Math.max(min, Math.abs(ans[j]-ans[j-1])); //인접한 두 통나무의 값중 가장 큰 값 출력
+            }
+            System.out.println(min);
+		}
+	}
+}
