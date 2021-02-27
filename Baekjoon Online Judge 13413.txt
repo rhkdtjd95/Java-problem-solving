@@ -1,0 +1,32 @@
+import java.io.*;
+
+public class Main{
+	static int W,B;
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int t = Integer.parseInt(br.readLine()); //테스트 케이스
+		String original, target;  //원래 문자열, 바뀔 문자열
+		while(t-->0){
+			W = B = 0;
+			Integer.parseInt(br.readLine());
+			original = br.readLine();
+			target = br.readLine();
+			System.out.println(comp(original, target));
+		}
+	}
+	public static int comp(String original, String target){ //문자열 비교 함수
+		int len = original.length();
+		int result =0 ;
+		char o, t;
+		for(int i=0; i < len; i++){  //배열 길이만큼 돌아가면서 
+			o = original.charAt(i);
+			t = target.charAt(i);
+			if(o != t){ // 원래 문자와 바뀔 문자가 같지 않고
+				if(o == 'W') W++;   //원래 문자가 W일떄 W++
+				else B++;   // B일떄 B++
+			}
+		}
+		result += (Math.min(W, B)+Math.abs(W-B));   // W,B중 작은 값과 W에서 B를 뺸 절대값을 더함
+		return result;
+	}
+}
