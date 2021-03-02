@@ -1,0 +1,25 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int  N = sc.nextInt();
+        int size = String.valueOf(N).length();  //N의 자리수
+        int min = N - (9 * size); //N의 자리수에서 최대한 나올 수 있는 값을(3*9)빼서 최소값 만듬
+        int result = 0;
+        
+        for(int i = min; i< N ; i++){
+            int sum = i;
+            int k = i;  //계산을 위해 i값을 K변수에 저장
+            while(k>0){ //K>0보다 클동안 k를 10으로 나눈 나머지 값을 sum변수에 저장
+                sum += k%10;
+                k /= 10;
+            }
+            if(sum == N){ //sum변수에 저장된 값이 N과 같을 때 빠져나옴.
+                result = i;
+                break;
+            }
+        }
+        System.out.println(result);
+    }
+}
