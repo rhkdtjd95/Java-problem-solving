@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int N = in.nextInt();
+        int num = 666; //초기값
+        int count = 1; //666이 포함된 횟수
+        
+        while(count != N) { 
+            num++;
+            if(String.valueOf(num).contains("666")) {   //666을 문자열로 바꿔서 포함 여부 확인  
+                count++;
+            }
+        }
+        System.out.println(num);
+    }
+}
