@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		System.out.print(checkHansu(n));
+	}
+
+	static int (checkHansu(int n) {
+		int count = 0;		
+		for(int i = 1; i <= n; i++ ) {
+			if(i < 100) {
+				count ++;	// 100 미만 조건 없이 더함
+			} else if(i < 1000) {
+	
+				int o = i % 10;  		// 1의 자리수
+				int t = (i / 10) % 10;	// 10의 자리수
+				int h = (i / 100) % 10;	// 100의 자리수
+				
+				if(o - t == t - h) {
+					count ++;  //o-t 값이 t-h와 같을떄(등차수열)  
+				}
+			}
+		}
+		return count;
+	}
+}
