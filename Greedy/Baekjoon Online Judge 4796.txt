@@ -1,0 +1,20 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args){
+       Scanner sc = new Scanner(System.in);
+       int t = 1;
+       while(true){          
+           int L = sc.nextInt();  //사용가능일
+           int P = sc.nextInt();  //연속일
+           int V = sc.nextInt();  //휴가
+           
+           if(L == 0 || P == 0 || V == 0){ //세 값 중 0이 있으면 break
+               break;
+           }
+           //V를 P로 나눈 몫에 사용가능일과 휴가에서 연속일을 나눈 몫 중 적은 값을 더함  
+           System.out.println("Case "+t+": " +((V/P)*L + Math.min(L,V%P)));
+           t++;
+       }
+    }
+}
