@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class Main {
+    //1.W시작 2. B시작
+	static String[] wb = {"WBWBWBWB","BWBWBWBW","WBWBWBWB","BWBWBWBW","WBWBWBWB","BWBWBWBW","WBWBWBWB","BWBWBWBW"};
+	static String[] bw = {"BWBWBWBW","WBWBWBWB","BWBWBWBW","WBWBWBWB","BWBWBWBW","WBWBWBWB","BWBWBWBW","WBWBWBWB"}; 
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		
+		final int n = sc.nextInt();	
+		final int m = sc.nextInt();	
+
+		String[] arr = new String[n];
+		for(int i = 0; i < n ; i++) arr[i] = sc.next();		
+		
+		int min=n*m;	
+		int a = 0, b = 0;		
+		while(true) {
+			if(a+8>n) break;		//줄을 넘어가면 멈춤
+			
+			min = Math.min(min, checkBW(arr, a, b));
+			
+			if(a+8<=n) {		
+				if(b+8<m)
+                    b++;	
+				else { 
+                    a++;
+                    b=0;
+                }	
+			}								
+		} 
+		System.out.println(min);
+	}
+	//각각 W개수와 B의 개수중 최소 개수 출력하는 함수
+	public static int checkBW(String[] arr, int a, int b) {
+		int countW = 0;			
+		int countB = 0;		
+		
+		for(int i = a ; i < 8+a; i++) {		
+			for(int j = b; j < 8+b; j++) {	
+				if(bw[i-a].charAt(j-b)!=arr[i].charAt(j))
+					countW++;
+				if(wb[i-a].charAt(j-b)!=arr[i].charAt(j))
+					countB++;
+			}
+		}
+		return Math.min(countW, countB);
+	}
+}
