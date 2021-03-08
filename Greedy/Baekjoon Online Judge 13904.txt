@@ -1,0 +1,37 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int [][] hw = new int[n][2]; 
+        int [] score = new int[1001];
+        int total = 0;
+        
+        for(int i = 0; i < n ; i++){
+            hw[i][0] = sc.nextInt(); //남은 일수
+            hw[i][1] = sc.nextInt(); //과제의 점수
+        }
+        
+        Arrays.sort(hw, new Comparator<int[]>(){ //과제 점수가 높은순으로 정렬
+            @Override
+            public int compare(int []arr1, int []arr2){
+                return Integer.compare(arr2[1],arr1[1]);
+            }
+        });
+        
+        for(int i=0; i < n ; i++){ //과제 점수가 가장 높은순으로 마감일에 최대한 가깝게 탐욕적으로 넣어줌
+            for(int j = hw[i][0]; j > 0 ; j--){
+                if(score[j] == 0){
+                    score[j] = hw[i][1];
+                    break;
+                }
+            }
+        }
+      
+        for(int i = 0; i< score.length; i++){
+            total += score[i];
+        }
+         System.out.println(total);
+    }
+}
