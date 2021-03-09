@@ -1,0 +1,36 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        int [] arr = new int[t];
+        for(int i = 0; i < arr.length; i++){
+            arr[i] = sc.nextInt();
+        }
+        int [] fibo = new int[45]; //피보나치 값 담을 배열 선언
+        fibo[0] = 1;
+        fibo[1] = 1;
+        for(int i = 2 ; i< fibo.length; i++){
+            fibo[i] = fibo[i-2] + fibo[i-1];
+        }
+        for(int i = 0; i< arr.length; i++){
+            int tmp = arr[i];
+            int [] result = new int[45]; //결과값을 담을 배열 선언
+            int count = 0;
+            for(int j = 44; j>=0; j--){   //가장 큰수부터 비교하여 새로운 배열에 저장 한 후 입력받은 수에서 뺸다
+                if(fibo[j] <= tmp ){
+                    result[count] = fibo[j];
+                    tmp -= fibo[j];
+                    count++;
+                }
+            }
+            for(int k = 0 ; k< result.length; k++){
+                Arrays.sort(result);  //저장한 배열을 오름차순으로 정렬 후 출력
+                if(result[k] != 0){
+                    System.out.println(result[k]);
+                }
+            }
+         }    
+    }
+}
