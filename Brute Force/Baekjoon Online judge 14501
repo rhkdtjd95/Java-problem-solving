@@ -1,0 +1,28 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int time[] = new int[N+1];
+        int pay [] = new int[N+1];
+        int dp[] = new int[N+2]; //i일부터 퇴사 날까지 얻을 수 있는 최대 이익
+        for(int i = 1; i<=N; i++){
+            time[i] = sc.nextInt();
+            pay[i]= sc.nextInt();
+        }
+        
+        for(int i = N ; i>0 ; i--){
+            int total = i+time[i];
+            
+            if(total > N+1){ //상담일이 퇴사일 초과하기 전
+                dp[i] = dp[i+1]; 
+            } else { 
+                //다음 날의 최대 이익과 당일에 상담했을 시 최대 이익 비교
+                dp[i] = Math.max(dp[i+1] , pay[i]+ dp[total]);
+
+            }
+        }
+        System.out.println(dp[1]);
+    }
+}
