@@ -1,0 +1,25 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();
+        int A = 0;
+        int B = 0;
+        int C = 0;
+        while(T >=10){ //10보다 클 동안 반복문 수행
+            if(T >=300){ //T값이 300보다 작을 동안 T값에서 300을 뺌
+                T-= 300;
+                A++;
+            } else if(T >= 60){//T값이 60보다 작을 동안 T값에서 60을 뺌
+                T-= 60;
+                B++;
+            } else if(T >= 10){//T값이 10보다 작을 동안 T값에서 10을 뺌
+                T-= 10;
+                C++;
+            }
+        }
+        //T가 값으로 나눠떨어졌을경우 A,B,C값 출력 아닐 경우 -1 출력
+        System.out.println(T == 0 ? A+" "+B+" "+C : "-1");
+    }
+}
